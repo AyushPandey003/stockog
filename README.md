@@ -1,36 +1,156 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Stock News Analyzer
+
+A Next.js 15 application for analyzing live stock news using multiple news APIs, analyzing sentiment with the Gemini API via Vercel's Python integration, and displaying results in a clean dashboard.
+
+## Features
+
+- **Authentication**: Google sign-in using NextAuth.js
+- **Stock Selection**: Search and select stocks to analyze
+- **News Aggregation**: Fetch news articles from multiple sources
+- **Sentiment Analysis**: Analyze news sentiment using Google's Gemini API
+- **Stock Information**: View current and historical stock price data
+- **Data Visualization**: Charts for sentiment distribution and stock performance
+- **Responsive Design**: Mobile-friendly UI built with Tailwind CSS
+
+## Tech Stack
+
+- **Framework**: Next.js 15 with App Router
+- **Authentication**: NextAuth.js for Google OAuth
+- **Styling**: Tailwind CSS
+- **State Management**: Zustand
+- **Charts**: Chart.js with react-chartjs-2
+- **API Integration**:
+  - NewsAPI for stock news
+  - Alpha Vantage for stock data
+  - Gemini API for sentiment analysis
+- **Database**: Vercel Postgres for storing sentiment analysis
+- **Deployment**: Optimized for Vercel with Python runtime
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
+- Node.js 18+ and npm/yarn
+- Vercel account (for deployment)
+- API keys for:
+  - Google OAuth (for authentication)
+  - NewsAPI (for news data)
+  - Alpha Vantage (for stock data)
+  - Gemini API (for sentiment analysis)
+
+### Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/stock-news-analyzer.git
+cd stock-news-analyzer
+```
+
+2. Install dependencies:
+```bash
+npm install
+# or
+yarn install
+```
+
+3. Set up environment variables:
+   - Copy `.env.example` to `.env.local`
+   - Fill in your API keys and credentials
+
+```bash
+cp .env.example .env.local
+```
+
+4. Run the development server:
 ```bash
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+5. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Setting Up API Keys
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+#### Google OAuth (for authentication)
+1. Go to [Google Cloud Console](https://console.cloud.google.com/)
+2. Create a new project
+3. Set up OAuth consent screen
+4. Create OAuth credentials
+5. Add authorized redirect URIs:
+   - For development: `http://localhost:3000/api/auth/callback/google`
+   - For production: `https://yourdomain.com/api/auth/callback/google`
 
-## Learn More
+#### NewsAPI
+1. Sign up at [NewsAPI](https://newsapi.org/)
+2. Get your API key from the dashboard
 
-To learn more about Next.js, take a look at the following resources:
+#### Alpha Vantage
+1. Sign up at [Alpha Vantage](https://www.alphavantage.co/)
+2. Get your API key from the dashboard
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+#### Gemini API
+1. Go to [Google AI Studio](https://makersuite.google.com/app/apikey)
+2. Create an API key for Gemini
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Deployment on Vercel
 
-## Deploy on Vercel
+This application is optimized for deployment on Vercel with Python runtime support.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Push your code to a GitHub repository
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+2. Connect your repository to Vercel
+
+3. Configure environment variables in Vercel dashboard
+
+4. Set up Python runtime:
+   - Vercel will automatically detect the Python requirements from `requirements.txt`
+
+5. Deploy your application
+
+## Project Structure
+
+```
+/app
+  /auth
+    /signin/page.tsx       # Sign-in page
+  /dashboard
+    /page.tsx              # Main dashboard
+    /news/page.tsx         # News feed tab
+    /sentiment/page.tsx    # Sentiment analysis tab
+    /stock/page.tsx        # Stock performance tab
+    /settings/page.tsx     # Settings page
+  /api
+    /news/route.ts         # API route to fetch news
+    /sentiment/route.py    # Python API route for Gemini sentiment analysis
+    /stock/route.ts        # API route for stock data
+/components
+  /Sidebar.tsx             # Reusable sidebar component
+  /StockSelector.tsx       # Stock selection dropdown
+  /NewsCard.tsx            # News article card
+  /SentimentChart.tsx      # Sentiment charts
+  /StockChart.tsx          # Stock price/volume charts
+/lib
+  /api.ts                  # API utility functions
+  /auth.ts                 # NextAuth configuration
+  /db.ts                   # Vercel Postgres utilities
+  /store.ts                # Zustand store
+```
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Acknowledgments
+
+- [Next.js](https://nextjs.org/)
+- [Vercel](https://vercel.com/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Chart.js](https://www.chartjs.org/)
+- [Alpha Vantage](https://www.alphavantage.co/)
+- [NewsAPI](https://newsapi.org/)
+- [Google Gemini API](https://ai.google.dev/)
