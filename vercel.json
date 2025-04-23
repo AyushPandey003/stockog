@@ -2,6 +2,7 @@
   "version": 2,
   "functions": {
     "api/sentiment/*.py": {
+
     }
   },
   "routes": [
@@ -10,5 +11,6 @@
       "dest": "/api/sentiment/route.py"
     }
   ],
+
   "buildCommand": "pip install -r requirements.txt && pnpm run build"
 }
