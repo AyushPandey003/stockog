@@ -118,13 +118,17 @@ export default function StockPage() {
     }
   }, [timeRange, stockData]);
 
-  // Fetch data when selected stock or time range changes
+  // Fetch current data when selected stock changes
   useEffect(() => {
     if (!selectedStock) return;
-
     fetchStockData();
+  }, [selectedStock, fetchStockData]);
+
+  // Fetch historical data when selected stock or time range changes
+  useEffect(() => {
+    if (!selectedStock) return;
     fetchHistoricalData();
-  }, [selectedStock, timeRange, fetchStockData, fetchHistoricalData]);
+  }, [selectedStock, timeRange, fetchHistoricalData]);
 
   // Handle refresh button click
   const handleRefresh = () => {
