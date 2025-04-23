@@ -71,7 +71,8 @@ export default function NewsPage() {
   useEffect(() => {
     if (!selectedStock) return;
     fetchNewsData();
-  }, [selectedStock, fetchNewsData]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedStock]); // Corrected dependencies
   
   const filteredAndSortedArticles = React.useMemo(() => {
     // First filter by search term
@@ -200,4 +201,4 @@ export default function NewsPage() {
       )}
     </div>
   );
-} 
+}

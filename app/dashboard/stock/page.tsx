@@ -124,7 +124,8 @@ export default function StockPage() {
 
     fetchStockData();
     fetchHistoricalData();
-  }, [selectedStock, timeRange, fetchStockData, fetchHistoricalData]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedStock, timeRange]); // Corrected dependencies
 
   // Handle refresh button click
   const handleRefresh = () => {

@@ -1,7 +1,7 @@
 {
   "version": 2,
   "functions": {
-    "api/sentiment/*.py": {
+    "api/sentiment/route.py": {
       "runtime": "python3.9"
     }
   },
@@ -11,5 +11,5 @@
       "dest": "/api/sentiment/route.py"
     }
   ],
-  "buildCommand": "pip install -r requirements.txt && pnpm run build"
-} 
+  "buildCommand": "pnpm run build"
+}
